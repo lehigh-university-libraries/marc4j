@@ -3,7 +3,6 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>edu.lehigh.libraries</groupId>
   <artifactId>marc4j</artifactId>
   <packaging>jar</packaging>
   <version>0.0.1</version>
@@ -95,7 +94,7 @@
     </developer>
   </developers>
 
-  <groupId>org.marc4j</groupId>
+  <groupId>edu.lehigh.libraries</groupId>
   
   <dependencies>
       <!-- https://mvnrepository.com/artifact/junit/junit -->
