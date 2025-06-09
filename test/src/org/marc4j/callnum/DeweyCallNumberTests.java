@@ -118,7 +118,7 @@ public class DeweyCallNumberTests
         validCallNums.add("792.0944 T374 v.1");      // long cutter
         validCallNums.add("792.0944 T374 v.2");      // long cutter
         validCallNums.add("792.0944 T3741");         // long cutter
-        validCallNums.add("800 .A123L");             // case-insensitive cutter letter suffixes
+        validCallNums.add("800 .A123KaBC");             // case-insensitive cutter letter suffixes
         validCallNums.add("800 .A123m");             // case-insensitive cutter letter suffixes
         validCallNums.add("818.5 .H488zb2");         // another digit at the end of the cutter
         validCallNums.add("828.5 .J89u:h");          // a colon in the cutter -- no test captures this though
