@@ -1,5 +1,6 @@
 package org.marc4j.callnum;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -87,6 +88,35 @@ public class DeweyCallNumberTests
                 System.out.println("shelfKey order problem: "+ prevShelfKey + " - > - " + shelfKey);
             assertTrue(shelfKey.compareTo(prevShelfKey) >= 0);
             prevShelfKey = shelfKey;
+        }
+    }
+
+    @Test
+    public void exerciseShelfKeyNormalization()
+    {
+        ShelfKeyCase[] testData = {
+            // https://github.com/lehigh-university-libraries/marc4j/pull/2
+            new ShelfKeyCase("791.43 F4871 1983",       "3791.43 F4871 41983",       "cutter number > 3 digits"),
+
+            // https://github.com/lehigh-university-libraries/marc4j/pull/6
+            new ShelfKeyCase("828.4 B8693W:B",          "3828.4 B8693W:B",           "cutter extra with a colon"),
+
+            // https://github.com/lehigh-university-libraries/marc4j/pull/8
+            new ShelfKeyCase("306.85 F19819 v.1",       "3306.85 F19819 V 11",       "cutter extra with lowercase characters and then more numbers"),
+
+            new ShelfKeyCase("123.45 Q98765 AbC:5:dEF", "3123.45 Q98765 ABC 15 DEF", "cutter with all of the above"),
+        };
+        for (ShelfKeyCase datum : testData)
+        {
+            DeweyCallNumber call = new DeweyCallNumber(datum.input);
+            assertEquals(datum.label, datum.expected, call.getShelfKey());
+        }
+    }
+
+    private static class ShelfKeyCase {
+        final String label, input, expected;
+        ShelfKeyCase(String input, String expected, String label) {
+            this.label = label; this.input = input; this.expected = expected;
         }
     }
 
